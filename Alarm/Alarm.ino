@@ -82,14 +82,14 @@ void loop() {
     if (alarm_triggered && (millis() - triggeraika) > 10000) {
       // Tässä lohkossa käsitellään tilannetta, jossa hälytin on lauennut.
       true_alarm = true;
-      lcd.clear();
-      lcd.print("ALARM!");
-      lcd.setCursor(0,1);
-      lcd.print("ALARM!");
+      lcd.setCursor(0,0);
+      lcd.print("ALARM!          ");
       kaikki_ledit(true);
     } else {
-      lcd.clear();
-      lcd.print("Kytketty!");
+      lcd.setCursor(0,0);
+      lcd.print("Kytketty!       ");
+      lcd.setCursor(0,1);
+      lcd.print("                ");
     }
 
     // Jos purkusekvenssi onnistuu, kytketään hälytin pois päältä
@@ -102,17 +102,17 @@ void loop() {
     
   } else {
     // Tässä lohkossa käsitellään tilannetta, jossa hälytintä ei ole kytketty päälle.
-    lcd.clear();
-    lcd.print("Ei kytketty.");
+    lcd.setCursor(0,0);
+    lcd.print("Ei kytketty.    ");
 
     // Pitämällä nappuloita 1 ja 2 kaksi sekuntia pohjassa, voidaan hälytin kytkeä päälle.
     if (Button1State == HIGH && Button2State == HIGH && Button3State == LOW && (millis() - muutosaika) > 2000) {
       alarm_on = true;
       kaikki_ledit(true);
-      lcd.clear();
-      lcd.print("Kytkeytyy 30s");
+      lcd.setCursor(0,0);
+      lcd.print("Kytkeytyy 30s   ");
       lcd.setCursor(0,1);
-      lcd.print("kuluttua!");
+      lcd.print("kuluttua!       ");
             
       delay(3000);
       kaikki_ledit(false);
